@@ -1,0 +1,12 @@
+import requests
+import json
+
+nbu_response = requests.get("https://bank.gov.ua/NBU_Exchange/exchange_site?start=20250407&end=20250411&valcode=usd&json")
+
+response_dictionary = json.loads(nbu_response.content)
+
+#print(response_dictionary)
+
+for element in response_dictionary:
+    print(element['exchangedate'], element['rate'])
+    #print(element)
