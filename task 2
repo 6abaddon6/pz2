@@ -1,0 +1,22 @@
+import requests
+import json
+import matplotlib.pyplot as plt
+
+nbu_response = requests.get("https://bank.gov.ua/NBU_Exchange/exchange_site?start=20250407&end=20250411&valcode=eur&json")
+
+response_dictionary = json.loads(nbu_response.content)
+
+exchange_dates=[]
+exchange_rates=[]
+
+for element in response_dictionary:
+    exchange_dates.append(element['exchangedate'])
+    exchange_rates.append(element['rate'])
+
+print(exchange_dates)
+print(exchange_rates)
+
+import matplotlib.pyplot as plt
+
+plt.plot(exchange_dates, exchange_rates)
+plt.show()
